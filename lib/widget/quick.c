@@ -105,12 +105,10 @@ quick_dialog_skip (QuickDialog * qd, int nskip)
         case quick_input:
             in = input_new (ypos, xpos, input_get_default_colors (),
                             qw->u.input.len, qw->u.input.text, qw->u.input.histname,
-                            INPUT_COMPLETE_DEFAULT);
-            in->is_password = (qw->u.input.flags == 1);
-            if ((qw->u.input.flags & 2) != 0)
-                in->completion_flags |= INPUT_COMPLETE_CD;
-            if ((qw->u.input.flags & 4) != 0)
-                in->strip_password = TRUE;
+                            qw->u.input.completion_flags);
+
+            in->is_password = qw->u.input.is_passwd;
+            in->strip_password = qw->u.input.strip_passwd;
             qw->widget = (Widget *) in;
             *qw->u.input.result = NULL;
             break;
@@ -182,7 +180,7 @@ quick_dialog_skip (QuickDialog * qd, int nskip)
                 break;
 
             case quick_input:
-                if ((qw->u.input.flags & 2) != 0)
+                if ((qw->u.input.completion_flags & INPUT_COMPLETE_CD))
                     *qw->u.input.result = tilde_expand (((WInput *) qw->widget)->buffer);
                 else
                     *qw->u.input.result = g_strdup (((WInput *) qw->widget)->buffer);

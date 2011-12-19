@@ -422,8 +422,10 @@ edit_get_save_file_as (WEdit * edit)
         QUICK_BUTTON (2, 10, DLG_HEIGHT - 3, DLG_HEIGHT, N_("&OK"), B_ENTER, NULL),
         QUICK_RADIO (5, DLG_WIDTH, DLG_HEIGHT - 8, DLG_HEIGHT, LB_NAMES, lb_names, (int *) &cur_lb),
         QUICK_LABEL (3, DLG_WIDTH, DLG_HEIGHT - 9, DLG_HEIGHT, N_("Change line breaks to:")),
-        QUICK_INPUT (3, DLG_WIDTH, DLG_HEIGHT - 11, DLG_HEIGHT, filename, DLG_WIDTH - 6, 0,
-                     "save-as", &filename_res),
+        QUICK_INPUT (3, DLG_WIDTH, DLG_HEIGHT - 11, DLG_HEIGHT, filename, DLG_WIDTH - 6, FALSE,
+                     "save-as", &filename_res, FALSE,
+                     INPUT_COMPLETE_HOSTNAMES | INPUT_COMPLETE_VARIABLES | INPUT_COMPLETE_USERNAMES
+                     | INPUT_COMPLETE_FILENAMES | INPUT_COMPLETE_SPACE_ESC),
         QUICK_LABEL (3, DLG_WIDTH, DLG_HEIGHT - 12, DLG_HEIGHT, N_("Enter file name:")),
         QUICK_END
     };
@@ -1588,7 +1590,8 @@ menu_save_mode_cmd (void)
         /* 2 */
         QUICK_CHECKBOX (4, DLG_X, 8, DLG_Y, N_("Check &POSIX new line"), &option_check_nl_at_eof),
         /* 3 */
-        QUICK_INPUT (8, DLG_X, 6, DLG_Y, option_backup_ext, 9, 0, "edit-backup-ext", &str_result),
+        QUICK_INPUT (8, DLG_X, 6, DLG_Y, option_backup_ext, 9, FALSE, "edit-backup-ext",
+                     &str_result, FALSE, INPUT_COMPLETE_DEFAULT),
         /* 4 */
         QUICK_RADIO (4, DLG_X, 3, DLG_Y, 3, str, &option_save_mode),
         QUICK_END
@@ -3200,12 +3203,14 @@ edit_mail_dialog (WEdit * edit)
     QuickWidget quick_widgets[] = {
         /* 0 */ QUICK_BUTTON (6, 10, 9, MAIL_DLG_HEIGHT, N_("&Cancel"), B_CANCEL, NULL),
         /* 1 */ QUICK_BUTTON (2, 10, 9, MAIL_DLG_HEIGHT, N_("&OK"), B_ENTER, NULL),
-        /* 2 */ QUICK_INPUT (3, 50, 8, MAIL_DLG_HEIGHT, "", 44, 0, "mail-dlg-input", &tmail_cc),
+        /* 2 */ QUICK_INPUT (3, 50, 8, MAIL_DLG_HEIGHT, "", 44, FALSE, "mail-dlg-input", &tmail_cc,
+                             FALSE, INPUT_COMPLETE_DEFAULT),
         /* 3 */ QUICK_LABEL (3, 50, 7, MAIL_DLG_HEIGHT, N_("Copies to")),
-        /* 4 */ QUICK_INPUT (3, 50, 6, MAIL_DLG_HEIGHT, "", 44, 0, "mail-dlg-input-2",
-                             &tmail_subject),
+        /* 4 */ QUICK_INPUT (3, 50, 6, MAIL_DLG_HEIGHT, "", 44, FALSE, "mail-dlg-input-2",
+                             &tmail_subject, FALSE, INPUT_COMPLETE_DEFAULT),
         /* 5 */ QUICK_LABEL (3, 50, 5, MAIL_DLG_HEIGHT, N_("Subject")),
-        /* 6 */ QUICK_INPUT (3, 50, 4, MAIL_DLG_HEIGHT, "", 44, 0, "mail-dlg-input-3", &tmail_to),
+        /* 6 */ QUICK_INPUT (3, 50, 4, MAIL_DLG_HEIGHT, "", 44, FALSE, "mail-dlg-input-3",
+                             &tmail_to, FALSE, INPUT_COMPLETE_DEFAULT),
         /* 7 */ QUICK_LABEL (3, 50, 3, MAIL_DLG_HEIGHT, N_("To")),
         /* 8 */ QUICK_LABEL (3, 50, 2, MAIL_DLG_HEIGHT, N_("mail -s <subject> -c <cc> <to>")),
         QUICK_END

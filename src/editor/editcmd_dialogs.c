@@ -125,13 +125,14 @@ editcmd_dialog_replace_show (WEdit * edit, const char *search_default, const cha
             /*  8 */ QUICK_LABEL (3, REPLACE_DLG_WIDTH, 4, REPLACE_DLG_HEIGHT,
                                   N_("Enter replacement string:")),
             /*  9 */ QUICK_INPUT (3, REPLACE_DLG_WIDTH, 5, REPLACE_DLG_HEIGHT,
-                                  replace_default, REPLACE_DLG_WIDTH - 6, 0, "replace",
-                                  replace_text),
+                                  replace_default, REPLACE_DLG_WIDTH - 6, FALSE, "replace",
+                                  replace_text, FALSE, INPUT_COMPLETE_DEFAULT),
             /* 10 */ QUICK_LABEL (3, REPLACE_DLG_WIDTH, 2, REPLACE_DLG_HEIGHT,
                                   N_("Enter search string:")),
             /* 11 */ QUICK_INPUT (3, REPLACE_DLG_WIDTH, 3, REPLACE_DLG_HEIGHT,
-                                  search_default, REPLACE_DLG_WIDTH - 6, 0,
-                                  MC_HISTORY_SHARED_SEARCH, search_text),
+                                  search_default, REPLACE_DLG_WIDTH - 6, FALSE,
+                                  MC_HISTORY_SHARED_SEARCH, search_text, FALSE,
+                                  INPUT_COMPLETE_DEFAULT),
             QUICK_END
         };
 
@@ -198,8 +199,8 @@ editcmd_dialog_search_show (WEdit * edit)
                      (int *) &edit_search_options.type),
         /* 9 */
         QUICK_INPUT (3, SEARCH_DLG_WIDTH, 3, SEARCH_DLG_HEIGHT,
-                     INPUT_LAST_TEXT, SEARCH_DLG_WIDTH - 6, 0,
-                     MC_HISTORY_SHARED_SEARCH, &search_text),
+                     INPUT_LAST_TEXT, SEARCH_DLG_WIDTH - 6, FALSE,
+                     MC_HISTORY_SHARED_SEARCH, &search_text, FALSE, INPUT_COMPLETE_DEFAULT),
         /* 10 */
         QUICK_LABEL (3, SEARCH_DLG_WIDTH, 2, SEARCH_DLG_HEIGHT, N_("Enter search string:")),
         QUICK_END

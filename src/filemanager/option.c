@@ -152,8 +152,8 @@ configure_box (void)
         QUICK_GROUPBOX (3, dlg_width, 13, dlg_height, dlg_width / 2 - 4, 5, N_("Pause after run")),
 
         /* Esc key mode */
-        QUICK_INPUT (10, dlg_width, 11, dlg_height, (const char *) time_out, 8, 0,
-                     MC_HISTORY_ESC_TIMEOUT, &time_out_new),
+        QUICK_INPUT (10, dlg_width, 11, dlg_height, (const char *) time_out, 8, FALSE,
+                     MC_HISTORY_ESC_TIMEOUT, &time_out_new, FALSE, INPUT_COMPLETE_DEFAULT),
         QUICK_LABEL (5, dlg_width, 11, dlg_height, N_("Timeout:")),
         QUICK_CHECKBOX (5, dlg_width, 10, dlg_height, N_("S&ingle press"), &old_esc_mode),
         QUICK_GROUPBOX (3, dlg_width, 9, dlg_height, dlg_width / 2 - 4, 4, N_("Esc key mode")),

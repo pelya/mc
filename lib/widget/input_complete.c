@@ -1247,7 +1247,12 @@ complete_engine (WInput * in, int what_to_do)
         for (; s >= in->buffer; str_prev_char (&s))
         {
             start = s - in->buffer;
-            if (strchr (" \t;|<>", *s) != NULL)
+
+            if (strchr (";|<>", *s) != NULL)
+                break;
+
+            if (((in->completion_flags & INPUT_COMPLETE_SPACE_ESC) == 0) &&
+                (*s == ' ' || *s == '\t') && !strutils_is_char_escaped (in->buffer, s))
                 break;
         }
 

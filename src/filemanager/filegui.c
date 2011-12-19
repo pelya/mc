@@ -545,7 +545,7 @@ file_op_context_create_ui_without_init (FileOpContext * ctx, gboolean with_eta,
     buttons_width = abort_button_width + skip_button_width + 2;
 
     dlg_width = max (58, buttons_width + 6);
-    dlg_height = 17; /* to make compiler happy :) */
+    dlg_height = 17;            /* to make compiler happy :) */
 
     ui = g_new0 (FileOpContextUI, 1);
     ctx->ui = ui;
@@ -590,8 +590,7 @@ file_op_context_create_ui_without_init (FileOpContext * ctx, gboolean with_eta,
             add_widget (ui->op_dlg, ui->progress_total_gauge =
                         gauge_new (7 + dy, 3 + 3, 0, 100, 0));
 
-        add_widget (ui->op_dlg, ui->total_files_processed_label =
-                    label_new (9 + dy, 3, ""));
+        add_widget (ui->op_dlg, ui->total_files_processed_label = label_new (9 + dy, 3, ""));
 
         add_widget (ui->op_dlg, ui->time_label = label_new (10 + dy, 3, ""));
 
@@ -973,14 +972,15 @@ file_mask_dialog (FileOpContext * ctx, FileOperation operation,
         /*  6 - OFFSET */
         QUICK_CHECKBOX (3, FMDX, 7, FMDY, N_("Follow &links"), &ctx->follow_links),
         /*  7 - OFFSET */
-        QUICK_INPUT (3, FMDX, 6, FMDY, "", 58, 0, "input2", &dest_dir),
+        QUICK_INPUT (3, FMDX, 6, FMDY, "", 58, FALSE, "input2", &dest_dir, FALSE,
+                     INPUT_COMPLETE_FILENAMES | INPUT_COMPLETE_SPACE_ESC),
         /*  8 - OFFSET */
         QUICK_LABEL (3, FMDX, 5, FMDY, N_("to:")),
         /*  9 - OFFSET */
         QUICK_CHECKBOX (37, FMDX, 4, FMDY, N_("&Using shell patterns"), &source_easy_patterns),
         /* 10 - OFFSET */
-        QUICK_INPUT (3, FMDX, 3, FMDY, easy_patterns ? "*" : "^(.*)$", 58, 0, "input-def",
-                     &source_mask),
+        QUICK_INPUT (3, FMDX, 3, FMDY, easy_patterns ? "*" : "^(.*)$", 58, FALSE, "input-def",
+                     &source_mask, FALSE, INPUT_COMPLETE_FILENAMES | INPUT_COMPLETE_SPACE_ESC),
         /* 11 - OFFSET */
         QUICK_LABEL (3, FMDX, 2, FMDY, fmd_buf),
         QUICK_END

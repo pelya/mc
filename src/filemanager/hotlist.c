@@ -1029,9 +1029,12 @@ add_new_entry_input (const char *header, const char *text1, const char *text2,
         /* 0 */ QUICK_BUTTON (55, 80, RELATIVE_Y_BUTTONS, 0, N_("&Cancel"), B_CANCEL, NULL),
         /* 1 */ QUICK_BUTTON (30, 80, RELATIVE_Y_BUTTONS, 0, N_("&Insert"), B_INSERT, NULL),
         /* 2 */ QUICK_BUTTON (10, 80, RELATIVE_Y_BUTTONS, 0, N_("&Append"), B_APPEND, NULL),
-        /* 3 */ QUICK_INPUT (4, 80, RELATIVE_Y_INPUT_PTH, 0, *r2, 58, 2, "input-pth", r2),
+        /* 3 */ QUICK_INPUT (4, 80, RELATIVE_Y_INPUT_PTH, 0, *r2, 58, FALSE, "input-pth", r2,
+                             FALSE, INPUT_COMPLETE_FILENAMES | INPUT_COMPLETE_SPACE_ESC |
+                             INPUT_COMPLETE_DEFAULT | INPUT_COMPLETE_CD),
         /* 4 */ QUICK_LABEL (4, 80, 3, 0, text2),
-        /* 5 */ QUICK_INPUT (4, 80, 3, 0, *r1, 58, 0, "input-lbl", r1),
+        /* 5 */ QUICK_INPUT (4, 80, 3, 0, *r1, 58, FALSE, "input-lbl", r1, FALSE,
+                             INPUT_COMPLETE_DEFAULT),
         /* 6 */ QUICK_LABEL (4, 80, 2, 0, text1),
         QUICK_END
     };
@@ -1125,7 +1128,8 @@ add_new_group_input (const char *header, const char *label, char **result)
         /* 0 */ QUICK_BUTTON (55, 80, 1, 0, N_("&Cancel"), B_CANCEL, NULL),
         /* 1 */ QUICK_BUTTON (30, 80, 1, 0, N_("&Insert"), B_INSERT, NULL),
         /* 2 */ QUICK_BUTTON (10, 80, 1, 0, N_("&Append"), B_APPEND, NULL),
-        /* 3 */ QUICK_INPUT (4, 80, 0, 0, "", 58, 0, "input", result),
+        /* 3 */ QUICK_INPUT (4, 80, 0, 0, "", 58, FALSE, "input", result, FALSE,
+                             INPUT_COMPLETE_DEFAULT),
         /* 4 */ QUICK_LABEL (4, 80, 2, 0, label),
         QUICK_END
     };

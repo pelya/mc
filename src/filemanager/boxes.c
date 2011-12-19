@@ -944,20 +944,21 @@ configure_vfs (void)
         /*  3 */ QUICK_CHECKBOX (4, VFSX, 11, VFSY, N_("Use &passive mode"),
                                  &ftpfs_use_passive_connections),
         /*  4 */ QUICK_CHECKBOX (4, VFSX, 10, VFSY, N_("&Use ~/.netrc"), &ftpfs_use_netrc),
-        /*  5 */ QUICK_INPUT (4, VFSX, 9, VFSY, ftpfs_proxy_host, 48, 0, "input-ftp-proxy",
-                              &ret_ftp_proxy),
+        /*  5 */ QUICK_INPUT (4, VFSX, 9, VFSY, ftpfs_proxy_host, 48, FALSE, "input-ftp-proxy",
+                              &ret_ftp_proxy, FALSE, INPUT_COMPLETE_HOSTNAMES),
         /*  6 */ QUICK_CHECKBOX (4, VFSX, 8, VFSY, N_("&Always use ftp proxy"),
                                  &ftpfs_always_use_proxy),
         /*  7 */ QUICK_LABEL (49, VFSX, 7, VFSY, N_("sec")),
-        /*  8 */ QUICK_INPUT (38, VFSX, 7, VFSY, buffer3, 10, 0, "input-timeout",
-                              &ret_directory_timeout),
+        /*  8 */ QUICK_INPUT (38, VFSX, 7, VFSY, buffer3, 10, FALSE, "input-timeout",
+                              &ret_directory_timeout, FALSE, INPUT_COMPLETE_DEFAULT),
         /*  9 */ QUICK_LABEL (4, VFSX, 7, VFSY, N_("ftpfs directory cache timeout:")),
-        /* 10 */ QUICK_INPUT (4, VFSX, 6, VFSY, ftpfs_anonymous_passwd, 48, 0, "input-passwd",
-                              &ret_passwd),
+        /* 10 */ QUICK_INPUT (4, VFSX, 6, VFSY, ftpfs_anonymous_passwd, 48, FALSE, "input-passwd",
+                              &ret_passwd, FALSE, INPUT_COMPLETE_DEFAULT),
         /* 11 */ QUICK_LABEL (4, VFSX, 5, VFSY, N_("ftp anonymous password:")),
 #endif /* ENABLE_VFS_FTP */
         /* 12 */ QUICK_LABEL (49, VFSX, 3, VFSY, N_("sec")),
-        /* 13 */ QUICK_INPUT (38, VFSX, 3, VFSY, buffer2, 10, 0, "input-timo-vfs", &ret_timeout),
+        /* 13 */ QUICK_INPUT (38, VFSX, 3, VFSY, buffer2, 10, FALSE, "input-timo-vfs", &ret_timeout,
+                              FALSE, INPUT_COMPLETE_DEFAULT),
         /* 14 */ QUICK_LABEL (4, VFSX, 3, VFSY, N_("Timeout for freeing VFSs:")),
         QUICK_END
     };
@@ -1026,7 +1027,10 @@ cd_dialog (void)
         char *my_str;
 
         QuickWidget quick_widgets[] = {
-            /* 0 */ QUICK_INPUT (4 + len, xlen, 2, ylen, "", xlen - 7 - len, 2, "input", &my_str),
+            /* 0 */ QUICK_INPUT (4 + len, xlen, 2, ylen, "", xlen - 7 - len, FALSE, "input",
+                                 &my_str, TRUE,
+                                 INPUT_COMPLETE_FILENAMES | INPUT_COMPLETE_SPACE_ESC |
+                                 INPUT_COMPLETE_CD),
             /* 1 */ QUICK_LABEL (3, xlen, 2, ylen, label),
             QUICK_END
         };
@@ -1052,9 +1056,11 @@ symlink_dialog (const vfs_path_t * existing_vpath, const vfs_path_t * new_vpath,
     QuickWidget quick_widgets[] = {
         /* 0 */ QUICK_BUTTON (50, 80, 6, 8, N_("&Cancel"), B_CANCEL, NULL),
         /* 1 */ QUICK_BUTTON (16, 80, 6, 8, N_("&OK"), B_ENTER, NULL),
-        /* 2 */ QUICK_INPUT (4, 80, 5, 8, new, 58, 0, "input-1", ret_new),
+        /* 2 */ QUICK_INPUT (4, 80, 5, 8, new, 58, FALSE, "input-1", ret_new, FALSE,
+                             INPUT_COMPLETE_FILENAMES | INPUT_COMPLETE_SPACE_ESC),
         /* 3 */ QUICK_LABEL (4, 80, 4, 8, N_("Symbolic link filename:")),
-        /* 4 */ QUICK_INPUT (4, 80, 3, 8, existing, 58, 0, "input-2", ret_existing),
+        /* 4 */ QUICK_INPUT (4, 80, 3, 8, existing, 58, FALSE, "input-2", ret_existing,
+                             FALSE, INPUT_COMPLETE_FILENAMES | INPUT_COMPLETE_SPACE_ESC),
         /* 5 */ QUICK_LABEL (4, 80, 2, 8,
                              N_("Existing filename (filename symlink will point to):")),
         QUICK_END
