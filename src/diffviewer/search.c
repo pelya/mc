@@ -127,7 +127,7 @@ mcdiffview_dialog_search (WDiff * dview)
                      INPUT_LAST_TEXT, SEARCH_DLG_WIDTH - 6, FALSE,
                      MC_HISTORY_SHARED_SEARCH,
                      &exp,
-                     FALSE, INPUT_COMPLETE_DEFAULT),
+                     FALSE, INPUT_COMPLETE_NONE),
         /* 7 */
         QUICK_LABEL (3, SEARCH_DLG_WIDTH, 2, SEARCH_DLG_HEIGHT, N_("Enter search string:")),
         QUICK_END

@@ -27,6 +27,7 @@ typedef enum
 /* completion flags */
 typedef enum
 {
+    INPUT_COMPLETE_NONE = 0,
     INPUT_COMPLETE_FILENAMES = 1 << 0,
     INPUT_COMPLETE_HOSTNAMES = 1 << 1,
     INPUT_COMPLETE_COMMANDS = 1 << 2,
@@ -34,9 +35,7 @@ typedef enum
     INPUT_COMPLETE_USERNAMES = 1 << 4,
     INPUT_COMPLETE_CD = 1 << 5,
     INPUT_COMPLETE_SHELL_ESC = 1 << 6,
-    INPUT_COMPLETE_SPACE_ESC = 1 << 7,
-
-    INPUT_COMPLETE_DEFAULT = 0
+    INPUT_COMPLETE_SPACE_ESC = 1 << 7
 } input_complete_t;
 
 /*** structures declarations (and typedefs of structures)*****************************************/

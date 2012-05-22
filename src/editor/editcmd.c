@@ -1591,7 +1591,7 @@ menu_save_mode_cmd (void)
         QUICK_CHECKBOX (4, DLG_X, 8, DLG_Y, N_("Check &POSIX new line"), &option_check_nl_at_eof),
         /* 3 */
         QUICK_INPUT (8, DLG_X, 6, DLG_Y, option_backup_ext, 9, FALSE, "edit-backup-ext",
-                     &str_result, FALSE, INPUT_COMPLETE_DEFAULT),
+                     &str_result, FALSE, INPUT_COMPLETE_NONE),
         /* 4 */
         QUICK_RADIO (4, DLG_X, 3, DLG_Y, 3, str, &option_save_mode),
         QUICK_END
@@ -3204,13 +3204,13 @@ edit_mail_dialog (WEdit * edit)
         /* 0 */ QUICK_BUTTON (6, 10, 9, MAIL_DLG_HEIGHT, N_("&Cancel"), B_CANCEL, NULL),
         /* 1 */ QUICK_BUTTON (2, 10, 9, MAIL_DLG_HEIGHT, N_("&OK"), B_ENTER, NULL),
         /* 2 */ QUICK_INPUT (3, 50, 8, MAIL_DLG_HEIGHT, "", 44, FALSE, "mail-dlg-input", &tmail_cc,
-                             FALSE, INPUT_COMPLETE_DEFAULT),
+                             FALSE, INPUT_COMPLETE_NONE),
         /* 3 */ QUICK_LABEL (3, 50, 7, MAIL_DLG_HEIGHT, N_("Copies to")),
         /* 4 */ QUICK_INPUT (3, 50, 6, MAIL_DLG_HEIGHT, "", 44, FALSE, "mail-dlg-input-2",
-                             &tmail_subject, FALSE, INPUT_COMPLETE_DEFAULT),
+                             &tmail_subject, FALSE, INPUT_COMPLETE_NONE),
         /* 5 */ QUICK_LABEL (3, 50, 5, MAIL_DLG_HEIGHT, N_("Subject")),
         /* 6 */ QUICK_INPUT (3, 50, 4, MAIL_DLG_HEIGHT, "", 44, FALSE, "mail-dlg-input-3",
-                             &tmail_to, FALSE, INPUT_COMPLETE_DEFAULT),
+                             &tmail_to, FALSE, INPUT_COMPLETE_NONE),
         /* 7 */ QUICK_LABEL (3, 50, 3, MAIL_DLG_HEIGHT, N_("To")),
         /* 8 */ QUICK_LABEL (3, 50, 2, MAIL_DLG_HEIGHT, N_("mail -s <subject> -c <cc> <to>")),
         QUICK_END

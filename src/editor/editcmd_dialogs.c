@@ -126,13 +126,13 @@ editcmd_dialog_replace_show (WEdit * edit, const char *search_default, const cha
                                   N_("Enter replacement string:")),
             /*  9 */ QUICK_INPUT (3, REPLACE_DLG_WIDTH, 5, REPLACE_DLG_HEIGHT,
                                   replace_default, REPLACE_DLG_WIDTH - 6, FALSE, "replace",
-                                  replace_text, FALSE, INPUT_COMPLETE_DEFAULT),
+                                  replace_text, FALSE, INPUT_COMPLETE_NONE),
             /* 10 */ QUICK_LABEL (3, REPLACE_DLG_WIDTH, 2, REPLACE_DLG_HEIGHT,
                                   N_("Enter search string:")),
             /* 11 */ QUICK_INPUT (3, REPLACE_DLG_WIDTH, 3, REPLACE_DLG_HEIGHT,
                                   search_default, REPLACE_DLG_WIDTH - 6, FALSE,
                                   MC_HISTORY_SHARED_SEARCH, search_text, FALSE,
-                                  INPUT_COMPLETE_DEFAULT),
+                                  INPUT_COMPLETE_NONE),
             QUICK_END
         };
 
@@ -200,7 +200,7 @@ editcmd_dialog_search_show (WEdit * edit)
         /* 9 */
         QUICK_INPUT (3, SEARCH_DLG_WIDTH, 3, SEARCH_DLG_HEIGHT,
                      INPUT_LAST_TEXT, SEARCH_DLG_WIDTH - 6, FALSE,
-                     MC_HISTORY_SHARED_SEARCH, &search_text, FALSE, INPUT_COMPLETE_DEFAULT),
+                     MC_HISTORY_SHARED_SEARCH, &search_text, FALSE, INPUT_COMPLETE_NONE),
         /* 10 */
         QUICK_LABEL (3, SEARCH_DLG_WIDTH, 2, SEARCH_DLG_HEIGHT, N_("Enter search string:")),
         QUICK_END
@@ -344,7 +344,7 @@ editcmd_dialog_raw_key_query (const char *heading, const char *query, int cancel
         create_dlg (TRUE, 0, 0, 7, w, dialog_colors, editcmd_dialog_raw_key_query_cb,
                     NULL, heading, DLG_CENTER | DLG_TRYUP | DLG_WANT_TAB);
     add_widget (raw_dlg, input_new (3 - cancel, w - 5, input_get_default_colors (),
-                                    2, "", 0, INPUT_COMPLETE_DEFAULT));
+                                    2, "", 0, INPUT_COMPLETE_NONE));
     add_widget (raw_dlg, label_new (3 - cancel, 2, query));
     if (cancel)
         add_widget (raw_dlg, button_new (4, w / 2 - 5, B_CANCEL, NORMAL_BUTTON, _("Cancel"), 0));

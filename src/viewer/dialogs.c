@@ -105,7 +105,7 @@ mcview_dialog_search (mcview_t * view)
                      (int *) &mcview_search_options.type),
         QUICK_INPUT (3, SEARCH_DLG_WIDTH, 3, SEARCH_DLG_HEIGHT,
                      INPUT_LAST_TEXT, SEARCH_DLG_WIDTH - 6, FALSE, MC_HISTORY_SHARED_SEARCH, &exp,
-                     FALSE, INPUT_COMPLETE_DEFAULT),
+                     FALSE, INPUT_COMPLETE_NONE),
         QUICK_LABEL (3, SEARCH_DLG_WIDTH, 2, SEARCH_DLG_HEIGHT, N_("Enter search string:")),
         QUICK_END
     };
@@ -196,7 +196,7 @@ mcview_dialog_goto (mcview_t * view, off_t * offset)
                      num_of_types, (const char **) mc_view_goto_str, (int *) &current_goto_type),
         QUICK_INPUT (3, goto_dlg_width, 2, goto_dlg_height,
                      INPUT_LAST_TEXT, goto_dlg_width - 6, FALSE, MC_HISTORY_VIEW_GOTO, &exp, FALSE,
-                     INPUT_COMPLETE_DEFAULT),
+                     INPUT_COMPLETE_NONE),
         QUICK_END
     };
 

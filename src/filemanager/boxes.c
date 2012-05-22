@@ -304,14 +304,14 @@ display_init (int radio_sel, char *init_text, int _check_status, char **_status)
 
     display_mini_status =
         input_new (10, 8, input_get_default_colors (), dlg_width - 12, _status[radio_sel],
-                   "mini-input", INPUT_COMPLETE_DEFAULT);
+                   "mini-input", INPUT_COMPLETE_NONE);
     add_widget (dd, display_mini_status);
 
     display_check_status = check_new (9, 4, _check_status, user_mini_status);
     add_widget (dd, display_check_status);
 
     display_user_format = input_new (7, 8, input_get_default_colors (), dlg_width - 12, init_text,
-                                     "user-fmt-input", INPUT_COMPLETE_DEFAULT);
+                                     "user-fmt-input", INPUT_COMPLETE_NONE);
     add_widget (dd, display_user_format);
 
     display_radio = radio_new (3, 4, LIST_TYPES, displays);
@@ -950,15 +950,15 @@ configure_vfs (void)
                                  &ftpfs_always_use_proxy),
         /*  7 */ QUICK_LABEL (49, VFSX, 7, VFSY, N_("sec")),
         /*  8 */ QUICK_INPUT (38, VFSX, 7, VFSY, buffer3, 10, FALSE, "input-timeout",
-                              &ret_directory_timeout, FALSE, INPUT_COMPLETE_DEFAULT),
+                              &ret_directory_timeout, FALSE, INPUT_COMPLETE_NONE),
         /*  9 */ QUICK_LABEL (4, VFSX, 7, VFSY, N_("ftpfs directory cache timeout:")),
         /* 10 */ QUICK_INPUT (4, VFSX, 6, VFSY, ftpfs_anonymous_passwd, 48, FALSE, "input-passwd",
-                              &ret_passwd, FALSE, INPUT_COMPLETE_DEFAULT),
+                              &ret_passwd, FALSE, INPUT_COMPLETE_NONE),
         /* 11 */ QUICK_LABEL (4, VFSX, 5, VFSY, N_("ftp anonymous password:")),
 #endif /* ENABLE_VFS_FTP */
         /* 12 */ QUICK_LABEL (49, VFSX, 3, VFSY, N_("sec")),
         /* 13 */ QUICK_INPUT (38, VFSX, 3, VFSY, buffer2, 10, FALSE, "input-timo-vfs", &ret_timeout,
-                              FALSE, INPUT_COMPLETE_DEFAULT),
+                              FALSE, INPUT_COMPLETE_NONE),
         /* 14 */ QUICK_LABEL (4, VFSX, 3, VFSY, N_("Timeout for freeing VFSs:")),
         QUICK_END
     };
@@ -1207,12 +1207,12 @@ vfs_smb_get_authinfo (const char *host, const char *share, const char *domain, c
 
     in_user =
         input_new (5, istart, input_get_default_colors (), ilen, user, "auth_name",
-                   INPUT_COMPLETE_DEFAULT);
+                   INPUT_COMPLETE_NONE);
     add_widget (auth_dlg, in_user);
 
     in_domain =
         input_new (3, istart, input_get_default_colors (), ilen, domain, "auth_domain",
-                   INPUT_COMPLETE_DEFAULT);
+                   INPUT_COMPLETE_NONE);
 
     add_widget (auth_dlg, in_domain);
     add_widget (auth_dlg, button_new (9, b2, B_CANCEL, NORMAL_BUTTON, buts[1], 0));
@@ -1220,7 +1220,7 @@ vfs_smb_get_authinfo (const char *host, const char *share, const char *domain, c
 
     in_password =
         input_new (7, istart, input_get_default_colors (), ilen, "", "auth_password",
-                   INPUT_COMPLETE_DEFAULT);
+                   INPUT_COMPLETE_NONE);
 
     in_password->completion_flags = 0;
     in_password->is_password = 1;
